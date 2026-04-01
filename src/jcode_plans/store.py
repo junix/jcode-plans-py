@@ -34,7 +34,8 @@ class PlanStore:
 
     @property
     def plans_dir(self) -> Path:
-        return Path(self.letta_home) / "plans"  # type: ignore[arg-type]
+        assert self.letta_home is not None  # resolved in __post_init__
+        return self.letta_home / "plans"
 
     def ensure_initialized(self) -> None:
         self.plans_dir.mkdir(parents=True, exist_ok=True)
