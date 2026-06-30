@@ -13,8 +13,17 @@ def test_plan_store_creates_expected_template(tmp_path: Path) -> None:
     plan_file = store.create_plan_file("test")
 
     content = plan_file.read_text()
-    assert "# Implementation Plan" in content
-    assert "## Verification" in content
+    assert content == (
+        "# Implementation Plan\n\n"
+        "**Project**: test\n\n"
+        "## Overview\n\n"
+        "## Requirements\n\n"
+        "## Analysis\n\n"
+        "## Proposed Changes\n\n"
+        "## Implementation Steps\n\n"
+        "## Verification\n\n"
+        "## Notes\n"
+    )
 
 
 def test_plan_store_filters_by_project(tmp_path: Path) -> None:
